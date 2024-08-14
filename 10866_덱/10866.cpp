@@ -5,14 +5,38 @@
 
 using namespace std;
 
-typedef struct link_comp
+class link_comp
 {
-    int value = 0;
-    link_comp &before;
-    link_comp &next;
-    link_comp() : before(*this), next(*this) {}
-} link_comp_t;
+    public:
+        int value;
+        // link_comp before;
+        // link_comp next;
+        // link_comp() : value(0), before(nullptr), next(nullptr) {}
+};
 
+class deque{
+    private:
+        link_comp head;
+    public:
+        deque() // constructor
+        {
+            head.before = head;
+            head.next= head;
+        }
+        void push_front(int X) // member method
+        {
+            link_comp new_comp;
+            new_comp.value = X;
+            new_comp.before = head;
+            new_comp.next = head.next;
+            head.next.before = new_comp;
+            head.next = new_comp;
+        }
+        void display()
+        {
+
+        }
+}
 void solution();
 void push_front(link_comp &deque, int X);
 void push_back(link_comp &deque, int X);
@@ -50,7 +74,12 @@ void solution()
     }
 }
 
-void push_front(link_comp &deque, int X) {}
+void push_front(link_comp &deque, int X) {
+    link_comp new_comp;
+    new_comp.value = X;
+    new_comp.next = deque;
+}
+
 void push_back(link_comp &deque, int X) {}
 int pop_front(link_comp &deque) {}
 int pop_back(link_comp &deque) {}
