@@ -19,13 +19,10 @@ int main(int argc, char const *argv[])
     for (int i = 0; i < N; i++)
         cin >> luggages[i][0] >> luggages[i][1];
 
-    for (int i = 0; i < N; i++) 
+    for (int i = 0; i < N; i++)
         for (int j = K; j >= luggages[i][0]; j--) // important!!
-            if (DP[j] < DP[j - luggages[i][0]] + luggages[i][1]) 
+            if (DP[j] < DP[j - luggages[i][0]] + luggages[i][1])
                 DP[j] = DP[j - luggages[i][0]] + luggages[i][1];
-        
-        
-    
 
     cout << DP[K];
 
